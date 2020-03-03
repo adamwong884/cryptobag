@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".DetailActivity">
+
+    <TextView
+        android:id="@+id/tvValue"
+        android:layout_width="103dp"
+        android:layout_height="26dp"
+        android:layout_marginStart="52dp"
+        android:layout_marginLeft="52dp"
+        android:text="Value (USD)"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="230dp" />
+
+    <TextView
+        android:id="@+id/tv7ChangeResult"
+        android:layout_width="121dp"
+        android:layout_height="26dp"
+        android:layout_marginStart="108dp"
+        android:layout_marginLeft="108dp"
+        android:layout_marginTop="35dp"
+        android:text="TextView"
+        app:layout_constraintStart_toEndOf="@+id/tv7Change"
+        app:layout_constraintTop_toBottomOf="@+id/tv24ChangeResult" />
+
+    <TextView
+        android:id="@+id/tvValue"
+        android:layout_width="111dp"
+        android:layout_height="28dp"
+        android:layout_marginTop="244dp"
+        android:layout_marginEnd="52dp"
+        android:layout_marginRight="52dp"
+        android:text="TextView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tvVolume"
+        android:layout_width="103dp"
+        android:layout_height="26dp"
+        android:layout_marginStart="43dp"
+        android:layout_marginLeft="43dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="101dp"
+        android:layout_marginRight="101dp"
+        android:layout_marginBottom="165dp"
+        android:text="Volume (24h)"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/tvVolumeResult"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvMarkCap" />
+
+    <TextView
+        android:id="@+id/tvVolumeResult"
+        android:layout_width="130dp"
+        android:layout_height="22dp"
+        android:layout_marginStart="108dp"
+        android:layout_marginLeft="108dp"
+        android:layout_marginTop="25dp"
+        android:layout_marginBottom="165dp"
+        android:text="TextView"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/tvVolume"
+        app:layout_constraintTop_toBottomOf="@+id/tvMarketCapResult" />
+
+    <TextView
+        android:id="@+id/tvMarkCap"
+        android:layout_width="103dp"
+        android:layout_height="26dp"
+        android:layout_marginStart="43dp"
+        android:layout_marginLeft="43dp"
+        android:layout_marginEnd="104dp"
+        android:layout_marginRight="104dp"
+        android:layout_marginBottom="21dp"
+        android:text="Marketcap"
+        app:layout_constraintBottom_toTopOf="@+id/tvVolume"
+        app:layout_constraintEnd_toStartOf="@+id/tvMarketCapResult"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv7Change" />
+
+    <TextView
+        android:id="@+id/tvMarketCapResult"
+        android:layout_width="127dp"
+        android:layout_height="27dp"
+        android:layout_marginStart="108dp"
+        android:layout_marginLeft="108dp"
+        android:layout_marginTop="26dp"
+        android:layout_marginBottom="25dp"
+        android:text="TextView"
+        app:layout_constraintBottom_toTopOf="@+id/tvVolumeResult"
+        app:layout_constraintStart_toEndOf="@+id/tvMarkCap"
+        app:layout_constraintTop_toBottomOf="@+id/tv7ChangeResult" />
+
+    <TextView
+        android:id="@+id/tv24ChangeResult"
+        android:layout_width="126dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="76dp"
+        android:layout_marginLeft="76dp"
+        android:layout_marginBottom="12dp"
+        android:text="TextView"
+        app:layout_constraintBottom_toTopOf="@+id/tv7ChangeResult"
+        app:layout_constraintStart_toEndOf="@+id/tv24Change" />
+
+    <TextView
+        android:id="@+id/tv24Change"
+        android:layout_width="127dp"
+        android:layout_height="27dp"
+        android:layout_marginStart="43dp"
+        android:layout_marginLeft="43dp"
+        android:layout_marginTop="19dp"
+        android:layout_marginEnd="81dp"
+        android:layout_marginRight="81dp"
+        android:layout_marginBottom="27dp"
+        android:text="Change (24h)"
+        app:layout_constraintBottom_toTopOf="@+id/tv7Change"
+        app:layout_constraintEnd_toStartOf="@+id/tv24ChangeResult"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv1Change" />
+
+    <TextView
+        android:id="@+id/tv1ChangeResult"
+        android:layout_width="126dp"
+        android:layout_height="26dp"
+        android:layout_marginBottom="8dp"
+        android:text="TextView"
+        app:layout_constraintBottom_toTopOf="@+id/tv24ChangeResult"
+        tools:layout_editor_absoluteX="246dp" />
+
+    <TextView
+        android:id="@+id/tv7Change"
+        android:layout_width="103dp"
+        android:layout_height="26dp"
+        android:layout_marginStart="43dp"
+        android:layout_marginLeft="43dp"
+        android:layout_marginTop="18dp"
+        android:layout_marginEnd="110dp"
+        android:layout_marginRight="110dp"
+        android:layout_marginBottom="14dp"
+        android:text="Change (7d)"
+        app:layout_constraintBottom_toTopOf="@+id/tvMarkCap"
+        app:layout_constraintEnd_toStartOf="@+id/tv7ChangeResult"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv24Change" />
+
+    <TextView
+        android:id="@+id/tv1Change"
+        android:layout_width="127dp"
+        android:layout_height="26dp"
+        android:layout_marginStart="43dp"
+        android:layout_marginLeft="43dp"
+        android:layout_marginTop="36dp"
+        android:layout_marginEnd="81dp"
+        android:layout_marginRight="81dp"
+        android:layout_marginBottom="19dp"
+        android:text="Change (1h)"
+        app:layout_constraintBottom_toTopOf="@+id/tv24Change"
+        app:layout_constraintEnd_toStartOf="@+id/tv1ChangeResult"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvValue" />
+
+    <TextView
+        android:id="@+id/tvType"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="120dp"
+        android:layout_marginEnd="50dp"
+        android:layout_marginRight="50dp"
+        android:text="TextView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/profilePic"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/ivSearch"
+        android:layout_width="39dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="171dp"
+        android:layout_marginLeft="171dp"
+        android:layout_marginTop="92dp"
+        android:layout_marginEnd="34dp"
+        android:layout_marginRight="34dp"
+        android:layout_marginBottom="158dp"
+        app:layout_constraintBottom_toTopOf="@+id/tvValue"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/profilePic"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0"
+        app:srcCompat="@android:drawable/ic_search_category_default" />
+
+    <ImageView
+        android:id="@+id/profilePic"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginEnd="111dp"
+        android:layout_marginRight="111dp"
+        android:layout_marginBottom="63dp"
+        app:layout_constraintBottom_toTopOf="@+id/tvValue"
+        app:layout_constraintEnd_toStartOf="@+id/tvType"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:srcCompat="@tools:sample/avatars[10]" />
+
+    <TextView
+        android:id="@+id/tvTicker"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginEnd="50dp"
+        android:layout_marginRight="50dp"
+        android:text="TextView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.982"
+        app:layout_constraintStart_toEndOf="@+id/profilePic"
+        tools:layout_editor_absoluteY="175dp" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
