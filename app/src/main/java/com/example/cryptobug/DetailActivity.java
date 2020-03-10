@@ -13,7 +13,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 public class DetailActivity extends AppCompatActivity {
-
+    private static final String TAG = "DetailActivity";
 
     private TextView name;
     private TextView symbol;
@@ -25,11 +25,17 @@ public class DetailActivity extends AppCompatActivity {
     private TextView volume;
     private ImageView search;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
+        Log.d(TAG, "onCreate: Detail Activity");
+
+        Intent intent = getIntent();
+        String str = intent.getStringExtra("coinName");
+        System.out.println(str);
+
+        final Coin coin = Coin.getCoinByName(str);
 
         name = findViewById(R.id.tvType);
         symbol = findViewById(R.id.tvTicker);
@@ -41,10 +47,7 @@ public class DetailActivity extends AppCompatActivity {
         volume = findViewById(R.id.tvVolumeResult);
         search = findViewById(R.id.ivSearch);
 
-        Intent intent = getIntent();
-        String ticker = intent.getStringExtra(MainActivity.KEY);
 
-        final Coin coin = Coin.searchCoin(ticker);
 
         name.setText(coin.getName());
         symbol.setText(coin.getSymbol());

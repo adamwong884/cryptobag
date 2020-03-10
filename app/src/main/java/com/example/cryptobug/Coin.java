@@ -103,28 +103,13 @@ import java.util.ArrayList;
             return coins;
         }
 
-        public static Coin searchCoin(String coinType) {
-            ArrayList<Coin> CoinArrayList = getCoins();
-            Coin myCoin = CoinArrayList.get(0);
-
-            if (coinType.equals("BTC")) {
-                CoinArrayList.get(0);
-            } else if (coinType.equals("ETH")) {
-                CoinArrayList.get(1);
-            } else if (coinType.equals("XRP")) {
-                CoinArrayList.get(2);
-            } else if (coinType.equals("BCH")) {
-                CoinArrayList.get(3);
-            } else if (coinType.equals("BCHSV")) {
-                CoinArrayList.get(4);
-            } else if (coinType.equals("USDT")) {
-                CoinArrayList.get(5);
-            } else if (coinType.equals("LTC")) {
-                CoinArrayList.get(6);
-            } else if (coinType.equals("EOS")) {
-                CoinArrayList.get(7);
+        public static Coin getCoinByName(String coinName){
+            for (Coin c : Coin.getCoins()) {
+                if (c.getName().equals(coinName)) {
+                    return c;
+                }
             }
-            return myCoin;
-
+            return null;
         }
+
     }

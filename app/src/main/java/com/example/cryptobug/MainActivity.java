@@ -2,17 +2,21 @@ package com.example.cryptobug;
 
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.Adapter;
 import android.widget.Button;
 
 import static android.provider.AlarmClock.EXTRA_MESSAGE;
 
 public class MainActivity extends AppCompatActivity{
+    private RecyclerView recyclerView;
     private static final String TAG = "MainActivity";
     public static final String KEY = "com.example.cryptobug.MESSAGE";
 
@@ -21,25 +25,26 @@ public class MainActivity extends AppCompatActivity{
         Log.d(TAG, "onCreate: Starting onCreate");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        recyclerView = findViewById(R.id.recycler_view);
 
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        Button launchBtn = findViewById(R.id.launchBtn);
-        launchBtn.setOnClickListener(new OnClickListener() {
+        MyAdapter myAdapter = new MyAdapter();
+        myAdapter.setData(Coin.getCoins());
+        recyclerView.setAdapter(myAdapter);
 
-            @Override
-            public void onClick(View v) {
-                launchDetailActivity("ETH");
+        recyclerView = findViewById(R.id.recycler_view);
+        recyclerView.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View view){
+                Intent intent = new Intent(getApplicationContext(), DetailActivity.class);
+                startActivity(intent);
             }
-
-            private void launchDetailActivity(String message) {
-                Intent myIntent = new Intent(MainActivity.this, DetailActivity.class);
-                myIntent.putExtra(EXTRA_MESSAGE, message);
-                myIntent.putExtra(KEY, message);
-                startActivity(myIntent);
-
-            }
-
         });
+
+
+
     }
+
 }
+
 
