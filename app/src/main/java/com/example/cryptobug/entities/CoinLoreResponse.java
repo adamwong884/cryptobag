@@ -11,6 +11,8 @@ import com.google.gson.annotations.SerializedName;
 
 public class CoinLoreResponse implements Serializable {
 
+//This is used to represent the data structure of the app
+    //Need to insert the hard clean string of the coins from postwoman.io
     @SerializedName("data")
     @Expose
     //Coin list database
