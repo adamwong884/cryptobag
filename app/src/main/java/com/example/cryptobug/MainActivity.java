@@ -17,48 +17,36 @@ import android.view.ViewGroup;
 import android.widget.Adapter;
 import android.widget.Button;
 
+import com.example.cryptobug.entities.Coin;
+import com.example.cryptobug.entities.CoinLoreResponse;
+import com.google.gson.Gson;
+
+import java.util.List;
+
 import static android.provider.AlarmClock.EXTRA_MESSAGE;
 
-public class MainActivity extends AppCompatActivity{
-    private RecyclerView recyclerView;
-    private ViewGroup container;
-    private androidx.fragment.app.FragmentTransaction FragmentTransaction;
-    private FragmentManager FragmentManager;
-    private static final String TAG = "MainActivity";
-    public static final String KEY = "com.example.cryptobug.MESSAGE";
+public class MainActivity extends AppCompatActivity {
+    private boolean mTwoPane;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        Log.d(TAG, "onCreate: Starting onCreate");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        FragmentManager = getSupportFragmentManager();
-        FragmentTransaction = FragmentManager.beginTransaction();
-        FragmentTransaction.replace(R.id.fragDetail, new DetailFragment());
-        FragmentTransaction.commit();
-        Log.d(TAG, "fragment manager, starting transacton");
+        if (findViewById(R.id.detail_container) != null) {
+            mTwoPane = true;
+        }
 
+        RecyclerView mRecyclerView = findViewById(R.id.rvList);
+        mRecyclerView.setHasFixedSize(true);
+        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(this);
+        mRecyclerView.setLayoutManager(mLayoutManager);
 
-        recyclerView = findViewById(R.id.recycler_view);
-
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-
-        MyAdapter myAdapter = new MyAdapter();
-        myAdapter.setData(Coin.getCoins());
-        recyclerView.setAdapter(myAdapter);
-
-        recyclerView = findViewById(R.id.recycler_view);
-        recyclerView.setOnClickListener(new View.OnClickListener(){
-            public void onClick(View view){
-                Intent intent = new Intent(getApplicationContext(), DetailActivity.class);
-                startActivity(intent);
-            }
-        });
-
-
+       // CoinLoreResponse response = new Gson()
+        Gson gson = new Gson();
+        CoinLoreResponse response = gson.fromJson(CoinLoreResponse.json, CoinLoreResponse.class);
+        List<Coin> coins = response.getData();
+        RecyclerView.Adapter mAdapter = new MyAdapter(this, coins, mTwoPane);
+        mRecyclerView.setAdapter(mAdapter);
     }
-
 }
-
-

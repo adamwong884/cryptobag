@@ -17,65 +17,69 @@ import android.widget.ImageView;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
+import com.example.cryptobug.entities.Coin;
+import com.example.cryptobug.entities.CoinLoreResponse;
+import com.google.gson.Gson;
+
+import java.text.NumberFormat;
 import java.util.ArrayList;
+import java.util.List;
 
 
 public class DetailFragment extends Fragment {
-    private static final String TAG = "DetailActivity";
+    public static final String ARG_ITEM_ID = "item_id";
+    private Coin mCoin;
 
-    private TextView name;
-    private TextView symbol;
-    private TextView value;
-    private TextView change1h;
-    private TextView change24h;
-    private TextView change7d;
-    private TextView marketcap;
-    private TextView volume;
-    private ImageView search;
-    private ViewGroup container;
-    private LayoutInflater inflater;
-
-    public DetailFragment(){
-
-    }
+    public DetailFragment() {}
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Log.d(TAG, "onCreate: Detail Activity");
 
+        //to do: update to link to CoinLoreResponse
+        if (getArguments().containsKey(ARG_ITEM_ID)) {
+            Gson gson = new Gson();
+            CoinLoreResponse response = gson.fromJson(CoinLoreResponse.json, CoinLoreResponse.class);
+            List<Coin> coins = response.getData();
+            for (Coin coin : coins) {
+                if (coin.getId().equals(getArguments().getString(ARG_ITEM_ID))) {
+                    mCoin = coin;
+                }
+            }
+            this.getActivity().setTitle(mCoin.getName());
+        }
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.fragment_detail, container, false);
-        name = v.findViewById(R.id.tvType);
-        symbol = v.findViewById(R.id.tvTicker);
-        value = v.findViewById(R.id.tvValue);
-        change1h = v.findViewById(R.id.tv1ChangeResult);
-        change24h = v.findViewById(R.id.tv24ChangeResult);
-        change7d = v.findViewById(R.id.tv7ChangeResult);
-        marketcap = v.findViewById(R.id.tvMarketCapResult);
-        volume = v.findViewById(R.id.tvVolumeResult);
-        search = v.findViewById(R.id.ivSearch);
+        View rootView = inflater.inflate(R.layout.fragment_detail, container, false);
+
+        //to do: update getters
 
 
-        final Coin coin = Coin.getCoinByName("coinName");
+        if(mCoin != null) {
+            NumberFormat formatter = NumberFormat.getCurrencyInstance();
+            ((TextView) rootView.findViewById(R.id.tvName)).setText(mCoin.getName());
+            ((TextView) rootView.findViewById(R.id.tvSymbol)).setText(mCoin.getSymbol());
+            ((TextView) rootView.findViewById(R.id.tvValueField)).setText(formatter.format(mCoin.getPriceUsd()));
+            ((TextView) rootView.findViewById(R.id.tvChange1hField)).setText(mCoin.getPercentChange1h() + " %");
+            ((TextView) rootView.findViewById(R.id.tvChange24hField)).setText(mCoin.getPercentChange24h() + " %");
+            ((TextView) rootView.findViewById(R.id.tvChange7dField)).setText(mCoin.getPercentChange7d() + " %");
+            ((TextView) rootView.findViewById(R.id.tvMarketcapField)).setText(formatter.format(Double.valueOf(mCoin.getMarketCapUsd())));
+            ((TextView) rootView.findViewById(R.id.tvVolumeField)).setText(formatter.format(Double.valueOf(mCoin.getVolume24())));
+            ((ImageView) rootView.findViewById(R.id.ivSearch)).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    searchCoin(mCoin.getName());
+                }
+            });
+        }
 
-        name.setText(coin.getName());
-        symbol.setText(coin.getSymbol());
-        value.setText(Double.toString(coin.getValue()));
-        change1h.setText(Double.toString(coin.getChange1h()));
-        change24h.setText(Double.toString(coin.getChange24h()));
-        change7d.setText(Double.toString(coin.getChange7d()));
-        marketcap.setText(Double.toString(coin.getMarketcap()));
-        volume.setText(Double.toString(coin.getVolume()));
-
-        return v;
-
-
+        return rootView;
     }
 
-
+    private void searchCoin(String name) {
+        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.google.com/search?q=" + name));
+        startActivity(intent);
+    }
 }
-

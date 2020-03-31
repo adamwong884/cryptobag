@@ -7,13 +7,7 @@
     tools:context=".DetailActivity">
 
     <ScrollView
-        android:id="@+id/scrollView2"
+        android:id="@+id/detail_container"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical" />
-    </ScrollView>
+        android:layout_height="match_parent"/>
 </androidx.constraintlayout.widget.ConstraintLayout>
