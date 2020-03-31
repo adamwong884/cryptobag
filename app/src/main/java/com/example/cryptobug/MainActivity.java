@@ -43,6 +43,7 @@ public class MainActivity extends AppCompatActivity {
         mRecyclerView.setLayoutManager(mLayoutManager);
 
        // CoinLoreResponse response = new Gson()
+        //Crate Gson and CoinLoreResponse instances
         Gson gson = new Gson();
         CoinLoreResponse response = gson.fromJson(CoinLoreResponse.json, CoinLoreResponse.class);
         List<Coin> coins = response.getData();
