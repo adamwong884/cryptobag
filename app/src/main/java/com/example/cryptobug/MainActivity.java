@@ -36,6 +36,8 @@ import static android.provider.AlarmClock.EXTRA_MESSAGE;
 
 public class MainActivity extends AppCompatActivity {
     private boolean mTwoPane;
+    private MyAdapter mAdapter;
+    private String TAG = "MainActivity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,7 +58,7 @@ public class MainActivity extends AppCompatActivity {
     //    Gson gson = new Gson();
       //  CoinLoreResponse response = gson.fromJson(CoinLoreResponse.json, CoinLoreResponse.class);
        // List<Coin> coins = response.getData();
-        RecyclerView.Adapter mAdapter = new MyAdapter(this, new ArrayList<Coin>(), mTwoPane);
+        mAdapter = new MyAdapter(this, new ArrayList<Coin>(), mTwoPane);
         mRecyclerView.setAdapter(mAdapter);
 
         Retrofit retrofit = new Retrofit.Builder()
@@ -66,24 +68,29 @@ public class MainActivity extends AppCompatActivity {
 
         CoinService service = retrofit.create(CoinService.class);
         Call<CoinLoreResponse> coinsCall = service.getCoins();
-        Response<CoinLoreResponse> coinsResponse = null;
-        try {
-            coinsResponse = coinsCall.execute();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        List<Coin> coins = coinsResponse.body().getData();
+        Log.d(TAG, "onResponse: SUCCESS 1");
 
+        /**      Response<CoinLoreResponse> coinsResponse = null;
+              try {
+        //          coinsResponse = coinsCall.execute();
+              } catch (IOException e) {
+                  e.printStackTrace();
+              }
+              List<Coin> coins = coinsResponse.body().getData();**/
 
+        //asynchronous method
+        //app freezes with synchronous
         coinsCall.enqueue(new Callback<CoinLoreResponse>() {
             @Override
             public void onResponse(Call<CoinLoreResponse> call, Response<CoinLoreResponse> response) {
-
+                Log.d(TAG, "onResponse: SUCCESS 2");
+                List<Coin> coins = response.body().getData();
+                mAdapter.setCoins(coins);
             }
 
             @Override
             public void onFailure(Call<CoinLoreResponse> call, Throwable t) {
-
+                Log.d(TAG, "onFailure: Failure");
             }
         });
 

@@ -38,9 +38,11 @@ public class DetailFragment extends Fragment {
 
         //to do: update to link to CoinLoreResponse
         if (getArguments().containsKey(ARG_ITEM_ID)) {
+            /**
             Gson gson = new Gson();
             CoinLoreResponse response = gson.fromJson(CoinLoreResponse.json, CoinLoreResponse.class);
             List<Coin> coins = response.getData();
+
             for (Coin coin : coins) {
                 if (coin.getId().equals(getArguments().getString(ARG_ITEM_ID))) {
                     mCoin = coin;
@@ -48,7 +50,9 @@ public class DetailFragment extends Fragment {
             }
             this.getActivity().setTitle(mCoin.getName());
         }
-    }
+    } **/
+
+            coinsCall.enque
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
