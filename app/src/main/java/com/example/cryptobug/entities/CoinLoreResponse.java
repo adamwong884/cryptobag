@@ -1,13 +1,12 @@
 
 package com.example.cryptobug.entities;
 
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-
-import com.example.cryptobug.entities.Info;
-import com.google.gson.annotations.Expose;
-import com.google.gson.annotations.SerializedName;
 
 public class CoinLoreResponse implements Serializable {
 
@@ -23,17 +22,31 @@ public class CoinLoreResponse implements Serializable {
     @Expose
     private Info info;
 
-    public CoinLoreResponse(List<Coin> data, Info info){
+    public CoinLoreResponse() {
+    }
+
+    /**
+     *
+     * @param data
+     * @param info
+     */
+    public CoinLoreResponse(List<Coin> data, Info info) {
         super();
-        this.data=data;
+        this.data = data;
         this.info = info;
     }
+
     public List<Coin> getData() {
         return data;
     }
 
     public void setData(List<Coin> data) {
         this.data = data;
+    }
+
+    public CoinLoreResponse withData(List<Coin> data) {
+        this.data = data;
+        return this;
     }
 
     public Info getInfo() {
@@ -44,6 +57,11 @@ public class CoinLoreResponse implements Serializable {
         this.info = info;
     }
 
+    public CoinLoreResponse withInfo(Info info) {
+        this.info = info;
+        return this;
+    }
+/**
     public static String json = "{\n" +
             "  \"data\": [\n" +
             "    {\n" +
@@ -1851,5 +1869,5 @@ public class CoinLoreResponse implements Serializable {
             "    \"coins_num\": 3982,\n" +
             "    \"time\": 1585630301\n" +
             "  }\n" +
-            "}";
+            "}";**/
 }

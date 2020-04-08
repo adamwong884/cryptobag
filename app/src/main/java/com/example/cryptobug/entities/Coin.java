@@ -5,6 +5,7 @@ import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
+//import org.apache.commons.lang.builder.ToStringBuilder;
 
 public class Coin implements Serializable {
 
@@ -56,11 +57,32 @@ public class Coin implements Serializable {
     @SerializedName("msupply")
     @Expose
     private String msupply;
+    private final static long serialVersionUID = -7788521239405538888L;
 
-
+    /**
+     * No args constructor for use in serialization
+     */
     public Coin() {
     }
 
+    /**
+     * @param symbol
+     * @param volume24a
+     * @param priceUsd
+     * @param priceBtc
+     * @param volume24
+     * @param percentChange24h
+     * @param percentChange7d
+     * @param marketCapUsd
+     * @param msupply
+     * @param tsupply
+     * @param name
+     * @param nameid
+     * @param rank
+     * @param csupply
+     * @param id
+     * @param percentChange1h
+     */
     public Coin(String id, String symbol, String name, String nameid, Integer rank, String priceUsd, String percentChange24h, String percentChange1h, String percentChange7d, String priceBtc, String marketCapUsd, Double volume24, Double volume24a, String csupply, String tsupply, String msupply) {
         super();
         this.id = id;
